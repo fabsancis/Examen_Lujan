@@ -2,15 +2,15 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/04/15 14:11:55.000.165,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/05/17 14:37:32.743,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/05/17 14:37:40.698,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2022/05/17 14:37:47.245,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>2022/05/17 14:37:56.016,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
-    <Transaction>2022/05/17 14:51:37.653,C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Tipos.pas=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
-    <Transaction>2022/05/17 14:51:50.268,C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\ListPointer.pas=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>2022/05/17 14:52:01.556,C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Funciones.pas=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2022/05/17 14:52:07.447,C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Form.dfm=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2022/05/17 14:52:07.447,C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Form.pas=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/05/17 14:52:19.792,C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\ejercicio_1.dproj=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/05/17 14:37:32.000.743,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/05/17 14:37:40.000.698,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2022/05/17 14:37:47.000.245,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2022/05/17 14:37:56.000.016,=C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2022/05/17 14:51:37.000.653,C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit4.pas=C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Tipos.pas</Transaction>
+    <Transaction>2022/05/17 14:51:50.000.268,C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit3.pas=C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\ListPointer.pas</Transaction>
+    <Transaction>2022/05/17 14:52:01.000.556,C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Funciones.pas</Transaction>
+    <Transaction>2022/05/17 14:52:07.000.447,C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Form.dfm</Transaction>
+    <Transaction>2022/05/17 14:52:07.000.447,C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\Form.pas</Transaction>
+    <Transaction>2022/05/17 14:52:19.000.792,C:\Users\Fabián Santana\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Fabián Santana\Downloads\U.N.L.U\2do_Año\Programación Ⅱ\Examen_Lujan\ejercicio_1.dproj</Transaction>
   </Transactions>
 </BorlandProject>
