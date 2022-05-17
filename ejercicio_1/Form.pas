@@ -9,11 +9,12 @@ uses
 type
   TForm1 = class(TForm)
     Memo1: TMemo;
-    Button1: TButton;
-    Button2: TButton;
+    bMayores: TButton;
+    Complejidad: TButton;
     Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
+    bMostrar: TButton;
+    procedure bMostrarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,9 +23,22 @@ type
 
 var
   Form1: TForm1;
+  varLista: obLista;
 
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.bMostrarClick(Sender: TObject);
+begin
+memo1.Lines.Clear;
+memo1.Lines.Add('Lista Random:' + sLineBreak);
+memo1.Lines.Add(varLista.Mostrar);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+varLista.CreaRandom;
+end;
 
 end.

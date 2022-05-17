@@ -1,0 +1,26 @@
+unit Funciones;
+
+interface
+
+Uses
+ListPointer,Tipos,Sysutils;
+
+
+Type
+Lista = Object
+
+  Private
+  atLista : Lista;
+
+
+
+  Public
+
+End;
+
+
+
+
+implementation
+
+end.

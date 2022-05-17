@@ -1,0 +1,27 @@
+unit Funciones;
+
+interface
+
+Uses
+ListPointer,Tipos,Sysutils;
+
+
+Type
+obLista = Object
+
+  Private
+  //Lis: Lista;  //No se por que no lo reconoce
+
+
+  Public
+  Function
+
+End;
+
+
+var List: Lista;
+
+
+implementation
+
+end.
