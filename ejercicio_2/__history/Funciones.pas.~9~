@@ -4,7 +4,7 @@ unit Funciones;
 interface
 
 uses
-StackPointer, Tipos,Sysutils;
+StackPointer, Tipos;
 
 
 Const
