@@ -4,7 +4,7 @@ unit Funciones;
 interface
 
 uses
-StackPointer, Tipos, Sysutils;
+StackPointer, Tipos,Sysutils;
 
 
 Const
@@ -30,8 +30,6 @@ End;
 
 implementation
 
-
-//CREA PILA RANDOM
 Procedure FPila.CrearPilaRandom(Var atPila: Pila);
 Var
 X: TipoElemento;
@@ -46,7 +44,6 @@ while atPila.EsLlena = False do
 End;
 
 
-//MOSTRAR PILA
 Function FPila.MostrarPila(Var atPila: Pila): string;
 Var
 s: string;
