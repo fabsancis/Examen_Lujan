@@ -1,0 +1,29 @@
+unit Funciones;
+
+
+interface
+
+uses
+StackPointer;
+
+Type
+FPila = Object
+
+  Private
+
+  Public
+    Procedure CrearPilaRandom(Var atPila: Pila);
+
+
+
+End;
+
+implementation
+
+Procedure FPila.CrearPilaRandom(Var atPila: Pila);
+Begin
+
+End;
+
+
+end.

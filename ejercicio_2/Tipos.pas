@@ -1,199 +1,137 @@
 unit Tipos;
 
 interface
-  Uses Tipos, stdctrls, SysUtils, Variants;
+  Uses Variants, SysUtils;
 
 Const
-  MIN = 1;    // No se utiliza en este caso pero se mantiene por compatibilidad
-  MAX = 2000;   // Control de pila llena
-  Nulo= NIL;  // Posicion NO valida del TOPE de la pila
+  cTab = Char(9); // Tabulador
+  cCR = Char(13); // Retorno de carro
+  cCRLF= Char(13) + Char(10); // Retorno de Carro + Fin de Linea
+  cLF = Char(10); // Fin de Linea solamente
+
 
 Type
-  PosicionPila = ^NodoPila;
+  // Retorno de las funciones de manejo de las estructuras
+  Resultado = (OK, CError, LLena, Vacia, PosicionInvalida, Otro, ClaveIncompatible, ClaveDuplicada);
 
-  NodoPila = Object
-    Datos: TipoElemento;
-    Prox: PosicionPila;
-  End;
+  // Tipos de Datos Soportados x la clave <variant>
+  TipoDatosClave = (Numero, Cadena, Fecha, Otros, Desconocido);
 
-  Pila = Object
-    Private
-      Inicio: PosicionPila;
-      Q_Items: Integer;
-      TDatoDeLaClave: TipoDatosClave;
-      Size : LongInt;
-      Function CantidadElementos(): LongInt;
-    Public
-      Function Crear(avTipoClave: TipoDatosClave; alSize: LongInt): Resultado;
-      Function EsVacia(): Boolean;
-      Function EsLlena(): Boolean;
-      Function Apilar(X:TipoElemento): Resultado;
-      Function DesApilar(): Resultado;
-      Function Recuperar(): TipoElemento;
-      Function RetornarClaves(): String;
-      Function InterCambiar(Var PAux: Pila; bCrearVacia: Boolean): LongInt;
-      Function LlenarClavesRandom(alSize: LongInt; RangoDesde, RangoHasta: LongInt): Resultado;
-      Function Tope():PosicionPila;
-      Function DatoDeLaClave: TipoDatosClave;
-      Function SizeStack(): LongInt;
-      Function MaxSizeStack(): LongInt;
+  // Tipos de Funcion Hash a Aplicar
+  TipoFuncionesHash = (Modulo, Plegamiento, MitadDelCuadrado);
+
+  // Datos a Guardar dentro de las estructuras
+  TipoElemento = Object
+    Clave: Variant;   // Cualquier valor soportado x <TipoDatosClave>
+    Valor1: Variant;  // Cualquier valor soportado x un Variant
+    Valor2: Pointer;  // Puntero Generico a Cualquier cosa (dato primitivo, otra estructura, un objeto, etc.)
+    // Comportamiento basico del <TipoElemento>
+    Function ArmarString(): String; // Retorno la Clave como un String
+    Function ArmarStringConSeparador(var Separador: String): String; // Retorno la Clave como un String
+    Function TipoDatoClave(avClave: Variant): TipoDatosClave;  // Valida el tipo de dato de la clave
+    Function TipoElementoVacio(): TipoElemento;  // Creo un <TipoElemento> Vacio
+	  Function EsTEVacio(): Boolean; // Retorno TRUE cuando TE es Vacio
+    Procedure Inicializar(aTDC: TipoDatosClave; aValor1Inicial: Variant);  // Para inicilizar segun el dato clave
   End;
 
 
+  // Operaciones del TipoElemento
 implementation
 
-// Crea la Pila Vacia
-Function Pila.Crear(avTipoClave: TipoDatosClave; alSize: LongInt): Resultado;
-Begin
-  if alSize < Min then Crear:= CError;
-  if alSize > Max then Crear:= CError;
-  if (alSize >= Min) And (alSize <= Max) then Begin
-    Inicio := Nulo;
-    Q_Items:= 0;
-    TDatoDeLaClave := avTipoClave;
-    Size := alSize;
-    Crear := OK;
-  End;
-End;
-
-// control de pila vacia
-Function Pila.EsVacia(): Boolean;
-Begin
-  EsVacia := (Inicio = Nulo);
-End;
-
-// control de pila llena
-Function Pila.EsLLena(): Boolean;
-Begin
-  EsLLena := (Q_Items = Size);
-End;
-
-// Agrega un elemento a la Pila
-Function Pila.Apilar(X:TipoElemento): Resultado;
-Var Q:PosicionPila;
-Begin
-  Apilar := CError;
-  // Controla que el Tipo de Dato de la Clave sea Homogeneo a la Lista
-  if X.TipoDatoClave(X.Clave) <> TDatoDeLaClave then Begin
-    Apilar := ClaveIncompatible;
-    Exit;
-  End;
-  // Ahora lo apila
-  If EsLlena() Then Apilar := Llena
-  Else Begin
-    New(Q);  // Pido memoria dinamica para almacenar el nodo
-    Q^.Prox := Inicio;
-    Inicio := Q;        // Inicio = Tope
-    Q^.Datos := X;
-    Inc(Q_Items);
-    Apilar := OK;
-  End;
-End;
-
-// Elimina un elemento de la Pila. Siempre del Tope
-Function Pila.DesApilar(): Resultado;
-Var Q:PosicionPila;
-Begin
-  DesApilar := CError;
-  If EsVacia() Then DesApilar := Vacia
-  Else Begin
-    Q := Inicio;
-    Inicio := Inicio^.Prox ;
-    Dec(Q_Items);
-    Dispose(Q);  // Libera el espacio de memoria del nodo
-    DesApilar := OK;
-  End;
-End;
-
-// retorna el elemento del tope de la pila.
-Function Pila.Recuperar(): TipoElemento;
-Var X: TipoElemento;
-Begin
-  Recuperar := X.TipoElementoVacio;
-  If Not EsVacia() Then
+  // Arma un String de la clave. Convierte el variant a un string
+  Function TipoElemento.ArmarString: String;
+  Var  SV: String;
   Begin
-    Recuperar := Inicio^.Datos ;
+    Try
+      SV := VarToStr(Clave); // se convierte a string el campo variant sin importar lo que tenga
+      SV := SV + cTab + VarToStr(Valor1);  // Convierto en String el Valor 1
+      ArmarString := SV;
+    except
+      ArmarString := '';
+    End
   End;
-End;
 
-// Pasa los Items de una Pila Auxiliar a la Pila "Pila"
-Function Pila.InterCambiar(Var PAux: Pila; bCrearVacia: Boolean): LongInt;
-Var X: TipoElemento;
-    I: LongInt;
-Begin
-  I := 0;
-  If bCrearVacia = true Then Crear(TDatoDeLaClave, Size);
-  While Not PAux.EsVacia() Do Begin
-    X := PAux.Recuperar();
-    If Apilar(X) = OK Then Inc(I);
-    PAux.DesApilar;
+  Function TipoElemento.ArmarStringConSeparador(var Separador: String): String;
+  Var  SV: String;
+  Begin
+    Try
+      SV := VarToStr(Clave); // se convierte a string el campo variant sin importar lo que tenga
+      SV := SV + Separador + VarToStr(Valor1);  // Convierto en String el Valor 1
+      ArmarStringConSeparador := SV;
+    except
+      ArmarStringConSeparador := '';
+    End
   End;
-  InterCambiar := I;
-End;
 
-// Retorna un string con todos los elementos de Pila
-// Cada elemento separado por Retorno de Carro + Final de Linea
-Function Pila.RetornarClaves():String;
-Var X: TipoElemento;
-    S, SS: String;
-    PAux: Pila ;
-Begin
-  SS:= '';
-  Paux.Crear(TDatoDeLaClave, Size);
-  While Not EsVacia() Do Begin
-    X := Recuperar();
-    Paux.Apilar(X);
-    S := X.ArmarString;
-    SS := SS + S + cCRLF;
-    DesApilar();
+  // Evalua el valor de la clave y retorna el Tipo de Datos del Variant
+  Function TipoElemento.TipoDatoClave(avClave: Variant): TipoDatosClave;
+  Var iTipo: Integer;
+  Begin
+    iTipo := VarType(avClave);
+
+    Case iTipo of
+      varEmpty     : TipoDatoClave := Otros;
+      varNull      : TipoDatoClave := Otros;
+      varAny       : TipoDatoClave := Otros;
+      varSmallInt  : TipoDatoClave := Numero;
+      varInteger   : TipoDatoClave := Numero;
+      varSingle    : TipoDatoClave := Numero;
+      varDouble    : TipoDatoClave := Numero;
+      varCurrency  : TipoDatoClave := Numero;
+      varDate      : TipoDatoClave := Fecha;
+      varOleStr    : TipoDatoClave := Otros;
+      varDispatch  : TipoDatoClave := Otros;
+      varError     : TipoDatoClave := Otros;
+      varBoolean   : TipoDatoClave := Otros;
+      varVariant   : TipoDatoClave := Otros;
+      varUnknown   : TipoDatoClave := Desconocido;
+      varShortint  : TipoDatoClave := Numero;
+      varByte      : TipoDatoClave := Numero;
+      varWord      : TipoDatoClave := Numero;
+      varLongWord  : TipoDatoClave := Numero;
+      varInt64     : TipoDatoClave := Numero;
+      varStrArg    : TipoDatoClave := Cadena;
+      varString    : TipoDatoClave := Cadena;
+      varArray     : TipoDatoClave := Otros;
+      varByRef     : TipoDatoClave := Otros;
+      varUString   : TipoDatoClave := Cadena;
+      varTypeMask  : TipoDatoClave := Otros;
+      else
+        TipoDatoClave := Otros;
+    end;
+  end;
+
+  // Asigna vacio a la clave y valor1,  NIL al puntero generico
+  Function TipoElemento.TipoElementoVacio(): TipoElemento;
+  Var X: TipoElemento;
+  Begin
+    X.Clave := '';
+    X.Valor1 := '';
+    X.Valor2 := NIL;
+    TipoElementoVacio := X;
   End;
-  InterCambiar(Paux, True);
-  RetornarClaves := SS;
-End;
 
-// Llena la pila con valores random en el atributo DI
-// desde <RangoDesde>  hasta <RangoHasta>
-Function Pila.LlenarClavesRandom(alSize: LongInt; RangoDesde, RangoHasta: LongInt): Resultado;
-Var X: TipoElemento;
-Begin
-  Randomize;
-  TDatoDeLaClave := Numero;
-  If Crear(TDatoDeLaClave, alSize) <> OK Then Begin
-    LlenarClavesRandom := CError;
-    Exit;
+  // Retorno Verdadero si el TE esta vacio
+  Function TipoElemento.EsTEVacio(): Boolean;
+  Begin
+    EsTEVacio := False;
+    Try
+      If (Clave = '') AND (Valor1 = '') AND (Valor2 = NIL) Then EsTEVacio := True;
+    except
+    End;
   End;
-  // Ahora la lleno random
-  X.Inicializar(TDatoDeLaClave,'');
-  While Not EsLLena() Do Begin
-    X.Clave := RangoDesde + Random(RangoHasta);
-    Apilar(X);
+
+  // Inicializa el TE segun el Tipo de Dato Clave.  Solo para numero, string y fechas
+  Procedure TipoElemento.Inicializar(aTDC: TipoDatosClave; aValor1Inicial: Variant);
+  Begin
+    Case aTDC of
+      Numero: clave := 0;
+      Cadena: clave := '';
+      Fecha:  clave := Date;
+    End;
+    // Seteo el Valor Inicial del Valor 1 y NIL en el puntero
+    Valor1:= aValor1Inicial;
+    Valor2:= NIL;
   End;
-  LlenarClavesRandom := OK;
-End;
-
-Function Pila.Tope():PosicionPila;
-Begin
-  Tope := Inicio;
-End;
-
-Function Pila.CantidadElementos(): LongInt;
-Begin
-  CantidadElementos := Q_Items;
-End;
-
-Function Pila.DatoDeLaClave: TipoDatosClave;
-Begin
-  DatoDeLaClave := TDatoDeLaClave;
-End;
-
-Function Pila.SizeStack(): LongInt;
-Begin
-  SizeStack := Size;
-End;
-
-Function Pila.MaxSizeStack(): LongInt;
-Begin
-  MaxSizeStack := MAX;
-End;
 
 end.
