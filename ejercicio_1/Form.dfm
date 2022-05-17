@@ -80,6 +80,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    OnClick = bMayoresClick
   end
   object Complejidad: TButton
     Left = 136

@@ -15,13 +15,10 @@ Type
 obLista = Object
 
   Private
-  List: Lista;
-
 
   Public
-  Procedure CreaRandom();
-  Function RetornarMayores():lista;
-  Function MostrarList():string;
+  Procedure CreaRandom(Var aL:Lista);
+  Function RetornarMayores(Var aL:Lista):lista;
   Function Mostrar(aL:Lista):string;
 
 
@@ -31,17 +28,17 @@ End;
 implementation
 
 //CREA LISTA RANDOM
-Procedure obLista.CreaRandom();
+Procedure obLista.CreaRandom(Var aL: Lista);
 Var
 X: TipoElemento;
 
 Begin
-List.Crear(Cadena,8);
+aL.Crear(Cadena,8);
 
-While Not List.EsLLena Do
+While Not aL.EsLLena Do
   Begin
     X.Clave:= Claves[Min+random(Max)];
-    List.Agregar(X);
+    aL.Agregar(X);
   End;
 
 End;
@@ -57,18 +54,8 @@ result:= s;
 End;
 
 
-//MUESTRA LISTA RANDOM
-Function obLista.MostrarList():string;
-Var
-s: string;
-
-Begin
-s:= List.RetornarClaves;
-result:= s;
-End;
-
 //RETORNAR MAYORES
-Function obLista.RetornarMayores():Lista;
+Function obLista.RetornarMayores(Var aL:Lista):Lista;
 Var
 Mayor: TipoElemento;
 lMayores : Lista;
@@ -77,32 +64,31 @@ Q: PosicionLista;
 
 Begin
 Mayor.Clave:= 'A';
-lMayores.Crear(List.DatoDeLaClave,List.SizeList); //la creamos del mismo tamaño para el peor de los casos (todas sean iguales)
-Q:= List.Comienzo;
+lMayores.Crear(aL.DatoDeLaClave,aL.SizeList); //la creamos del mismo tamaño para el peor de los casos (todas sean iguales)
+Q:= aL.Comienzo;
 
 while Q <> Nulo do
   Begin
-    X:= List.Recuperar(Q);
+    X:= aL.Recuperar(Q);
     if X.Clave > Mayor.Clave then
       Begin
       Mayor.Clave:= X.Clave;
-      //lMayores.Agregar(X);
       End;
 
-    Q:= List.Siguiente(Q);
+    Q:= aL.Siguiente(Q);
   End;
 
-Q:= List.Comienzo;
+Q:= aL.Comienzo;
 
 while Q <> Nulo do
   Begin
-    X:= List.Recuperar(Q);
+  X:= aL.Recuperar(Q);
     if X.Clave = Mayor.Clave then
       Begin
       lMayores.Agregar(X);
       End;
 
-    Q:= List.Siguiente(Q);
+    Q:= aL.Siguiente(Q);
   End;
 
 result:= lMayores;
