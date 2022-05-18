@@ -1,0 +1,48 @@
+unit Funciones;
+
+interface
+
+Uses
+ListPointer,Tipos,Sysutils;
+
+Const
+Claves = ['A'..'Z'];
+
+
+Type
+obLista = Object
+
+  Private
+  Lis: Lista;
+
+
+  Public
+  Procedure CreaRandom();
+  Function RetornarMayores(aL:Lista):Lista;
+
+End;
+
+
+//var List: Lista;
+
+
+implementation
+
+
+Procedure obLista.CreaRandom();
+Var
+X: TipoElemento;
+
+Begin
+Lis.Crear(Cadena,8);
+
+
+End;
+
+
+Function obLista.RetornarMayores(aL:Lista):Lista;
+Begin
+
+End;
+
+end.
