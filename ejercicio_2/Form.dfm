@@ -1,9 +1,10 @@
 object Form1: TForm1
   Left = 0
   Top = 0
+  ActiveControl = Memo1
   Caption = 'Form1'
-  ClientHeight = 497
-  ClientWidth = 779
+  ClientHeight = 434
+  ClientWidth = 841
   Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,88 +16,43 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 504
-    Top = 40
-    Width = 89
-    Height = 19
-    Caption = ' Ejercicio 2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold, fsItalic]
-    ParentFont = False
+    Left = 608
+    Top = 24
+    Width = 63
+    Height = 13
+    Caption = 'EJERCICIO 2'
   end
   object Memo1: TMemo
-    Left = 424
-    Top = 96
-    Width = 307
-    Height = 353
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = []
+    Left = 464
+    Top = 57
+    Width = 353
+    Height = 369
     Lines.Strings = (
-      'Dada una pila determinar la menor clave de '
-      'la misma. El Dato de la clave es '
-      'una cadena no repetible. La funci'#243'n ser'#225' '
-      'recursiva gen'#233'rica (que funcione'
-      'para cualquiera de las implementaciones). La '
-      'funci'#243'n "MenoDePila(Var: Pila): '
-      'TipoElemento". No debe perderse la pila '
-      'original. En caso de que la pila est'#233' '
-      'vac'#237'a retornar el "TipoElemento" vac'#237'o.'
-      ''
-      'Se pide:'
-      '- Hacer la funci'#243'n "MenorDePila".'
-      '- Indicar la complejidad de la funci'#243'n '
-      'desarrollada. Fundamentar.'
-      '')
-    ParentFont = False
+      'Memo1')
     TabOrder = 0
   end
-  object bMenorElemento: TButton
-    Left = 168
-    Top = 224
-    Width = 153
-    Height = 41
-    Caption = ' Menor Elemento'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
+  object bMostrar: TButton
+    Left = 304
+    Top = 88
+    Width = 75
+    Height = 25
+    Caption = 'Mostrar'
     TabOrder = 1
   end
-  object bComplejidadAlgoritmica: TButton
-    Left = 136
-    Top = 304
-    Width = 209
-    Height = 41
-    Caption = 'Complejidad Algor'#237'tmica'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
+  object bMenor: TButton
+    Left = 304
+    Top = 143
+    Width = 75
+    Height = 25
+    Caption = 'Menor'
     TabOrder = 2
   end
-  object bMostrar: TButton
-    Left = 184
-    Top = 152
-    Width = 113
-    Height = 41
-    Caption = 'Mostrar'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
+  object bComplejidad: TButton
+    Left = 304
+    Top = 200
+    Width = 75
+    Height = 25
+    Caption = 'CA'
     TabOrder = 3
-    OnClick = bMostrarClick
   end
 end

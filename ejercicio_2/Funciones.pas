@@ -1,10 +1,20 @@
 unit Funciones;
 
-
 interface
 
 uses
-StackPointer, Tipos, Sysutils;
+StackPointer,Tipos;
+
+Type
+FPila = Object
+
+  Public
+  Procedure CrearPilaRandom(Var atPila: Pila);
+  Function Mostrar(atPila: Pila): string;
+
+End;
+
+
 
 
 Const
@@ -12,26 +22,9 @@ Min = 1;
 Max = 26;
 Claves: array [Min..Max] of string = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 
-
-
-Type
-FPila = Object
-
-  Private
-
-  Public
-    Procedure CrearPilaRandom(Var atPila: Pila);
-    Function MostrarPila(Var atPila: Pila):string;
-
-
-
-
-End;
-
 implementation
 
 
-//CREA PILA RANDOM
 Procedure FPila.CrearPilaRandom(Var atPila: Pila);
 Var
 X: TipoElemento;
@@ -46,8 +39,7 @@ while atPila.EsLlena = False do
 End;
 
 
-//MOSTRAR PILA
-Function FPila.MostrarPila(Var atPila: Pila): string;
+Function FPila.Mostrar(atPila: Pila): string;
 Var
 s: string;
 
