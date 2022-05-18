@@ -34,13 +34,14 @@ implementation
 procedure TForm1.bMenorClick(Sender: TObject);
 begin
 memo1.Lines.Clear;
-memo1.Lines.Add(obPila.MenorDePila(atPila).ArmarString);
+memo1.Lines.Add('Menor: ' + obPila.MenorDePila(atPila).ArmarString);
+memo1.Lines.Add('Pila:' + sLineBreak + obPila.Mostrar(atPila));
 end;
 
 procedure TForm1.bMostrarClick(Sender: TObject);
 begin
 memo1.Lines.Clear;
-memo1.Lines.Add(obPila.Mostrar(atPila));
+memo1.Lines.Add(sLineBreak + 'Pila:' + sLineBreak + obPila.Mostrar(atPila));
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
