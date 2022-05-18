@@ -14,6 +14,8 @@ type
     bMenor: TButton;
     bComplejidad: TButton;
     procedure FormCreate(Sender: TObject);
+    procedure bMostrarClick(Sender: TObject);
+    procedure bMenorClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,6 +30,18 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.bMenorClick(Sender: TObject);
+begin
+memo1.Lines.Clear;
+memo1.Lines.Add(obPila.MenorDePila(atPila).ArmarString);
+end;
+
+procedure TForm1.bMostrarClick(Sender: TObject);
+begin
+memo1.Lines.Clear;
+memo1.Lines.Add(obPila.Mostrar(atPila));
+end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
