@@ -41,7 +41,6 @@ end;
 procedure TForm1.bMostrarClick(Sender: TObject);
 begin
 memo1.Lines.Clear;
-obPila.CrearPilaRandom(atPila);
 memo1.Lines.Add(sLineBreak + 'Pila:' + sLineBreak + obPila.Mostrar(atPila));
 end;
 

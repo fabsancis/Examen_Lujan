@@ -74,6 +74,10 @@ Menor: TipoElemento;
 
       Auxiliar();
 
+    End
+  else
+    Begin
+      Menor.TipoElementoVacio;
     End;
 
   atPila.InterCambiar(auxPila,False);

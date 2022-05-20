@@ -16,8 +16,6 @@ FPila = Object
 End;
 
 
-
-
 Const
 Min = 1;
 Max = 26;
@@ -60,29 +58,43 @@ X: TipoElemento;
 auxPila: Pila;
 Menor: TipoElemento;
 
-Begin
-auxPila.Crear(atPila.DatoDeLaClave,atPila.SizeStack);
-Menor.Clave:= 'Z';
+  Procedure Auxiliar();
 
-if atPila.EsVacia then
   Begin
-    result:= Menor;
-  End
-else
-  Begin
-  X:= atPila.Recuperar;
-  atPila.DesApilar;
-  auxPila.Apilar(X);
-  if Menor.Clave < X.Clave then
+
+  if not atPila.EsVacia then
     Begin
-      Menor:= X;
-    End;
-  result:= MenorDePila(atPila)
+    X:= atPila.Recuperar;
+    atPila.DesApilar;
+    auxPila.Apilar(X);
+      if Menor.Clave > X.Clave then
+        Begin
+          Menor.Clave:= X.Clave;
+        End;
 
+      Auxiliar();
+
+    End;
+
+  atPila.InterCambiar(auxPila,False);
   End;
 
-atPila.InterCambiar(auxPila,False);
+Begin
+Menor.Clave:= 'Z';
+auxPila.Crear(atPila.DatoDeLaClave,atPila.SizeStack);
+Auxiliar();
+MenorDePila:= Menor;
 
 End;
+
+
+
+
+
+
+
+
+
+
 
 end.
