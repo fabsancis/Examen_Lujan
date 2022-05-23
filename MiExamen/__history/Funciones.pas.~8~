@@ -1,0 +1,83 @@
+unit Funciones;
+
+interface
+
+uses
+Tipos, ListPointer;
+Function Mostrar(aL:Lista):string;
+Procedure CreaRandom(Var aL: Lista);
+
+Const
+Min=1;
+Max=4;
+Claves : array [Min..Max] of string = ('A','B','C','D');
+
+implementation
+
+
+//CREA LISTA RANDOM
+Procedure CreaRandom(Var aL: Lista);
+Var
+X: TipoElemento;
+
+Begin
+aL.Crear(Cadena,8);
+
+While Not aL.EsLLena Do
+  Begin
+    X.Clave:= Claves[Min+random(Max)];
+    aL.Agregar(X);
+  End;
+
+End;
+
+
+//MUESTRA LISTA
+Function Mostrar(aL:Lista):string;
+Var
+s:string;
+Begin
+s:= aL.RetornarClaves;
+result:= s;
+End;
+
+
+//ELIMINA REPETIDOS DE LA LISTA
+Function SinRepetidos(Var List: Lista): Lista;
+Var
+X: TipoElemento;
+Q: PosicionLista;
+s: string;
+flag: Boolean;
+I: integer;
+K: integer;
+
+Begin
+s:= '';
+Q:= List.Comienzo();
+
+while List.EsVacia = False do
+  Begin
+  X:= List.Recuperar(Q);
+  for I := 1 to List.SizeList do
+    Begin
+      for K := 1 to length(s) do
+        Begin
+          if X.Clave = s[k] then
+
+
+      End;
+
+
+
+    End;
+
+
+
+
+  End;
+
+
+End;
+
+end.
