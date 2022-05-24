@@ -1,0 +1,20 @@
+unit Funciones;
+
+interface
+
+uses
+Tipos, Sysutils,
+ListPointer;
+
+
+
+implementation
+
+
+Function NoMultiplos(Var atP: Pila): Pila;
+
+Begin
+
+End;
+
+end.

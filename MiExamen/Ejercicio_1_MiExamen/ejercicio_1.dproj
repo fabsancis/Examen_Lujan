@@ -103,7 +103,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Funciones.pas"/>
-        <DCCReference Include="ListPointer.pas"/>
+        <DCCReference Include="StackPointer.pas"/>
         <DCCReference Include="Tipos.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

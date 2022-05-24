@@ -4,7 +4,7 @@ uses
   Vcl.Forms,
   Form in 'Form.pas' {Form1},
   Funciones in 'Funciones.pas',
-  ListPointer in 'ListPointer.pas',
+  StackPointer in 'StackPointer.pas',
   Tipos in 'Tipos.pas';
 
 {$R *.res}

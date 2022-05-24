@@ -49,6 +49,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    OnClick = bPilaRandomClick
   end
   object bNoMultiplos: TButton
     Left = 96
@@ -63,12 +64,13 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
+    OnClick = bNoMultiplosClick
   end
   object Edit1: TEdit
     Left = 288
     Top = 267
     Width = 41
-    Height = 33
+    Height = 21
     TabOrder = 3
   end
 end
