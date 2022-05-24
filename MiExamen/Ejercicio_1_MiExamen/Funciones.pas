@@ -25,37 +25,41 @@ End;
 
 
 
+//NO MULTIPLOS
 Function NoMultiplos(Var atP: Pila; N: integer): Pila;
 Var
 X: TipoElemento;
 nmPila: Pila;
 AuxP: Pila ;
 
-Procedure CreaPila();
-  Begin
-  nmPila.Crear(atP.DatoDeLaClave,atP.SizeStack);
-  AuxP.Crear(atP.DatoDeLaClave,atP.SizeStack);
-  End;
-
-
-Begin
-
-if atP.EsVacia then
-  result:= nmPila
-else
-  Begin
-  X:= atP.Recuperar;
-  atP.DesApilar;
-  AuxP.Apilar(X);
-
-  if X.Clave mod N <> 0 then
+  Procedure Recursivo();
     Begin
-      nmPila.Apilar(X);
+
+      if  not atP.EsVacia then
+          Begin
+          X:= atP.Recuperar;
+          atP.DesApilar;
+          AuxP.Apilar(X);
+
+          if X.Clave mod N <> 0 then
+            Begin
+              nmPila.Apilar(X);
+            End;
+
+          Recursivo();
+
+          End;
+
     End;
 
-  result:= NoMultiplos(atP,N);
+Begin
+nmPila.Crear(atP.DatoDeLaClave,atP.SizeStack);
+AuxP.Crear(atP.DatoDeLaClave,atP.SizeStack);
 
-  End;
+Recursivo();
+NoMultiplos:= nmPila;
+atP.InterCambiar(AuxP,False);
 End;
+
 
 end.

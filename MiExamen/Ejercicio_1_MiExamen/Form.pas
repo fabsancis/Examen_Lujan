@@ -34,7 +34,7 @@ implementation
 procedure TForm1.bNoMultiplosClick(Sender: TObject);
 begin
 memo1.Lines.Add(sLineBreak + 'Pila de No Múltiplos' + sLineBreak);
-nmPila:= NoMultiplos(PilaRandom,3);
+nmPila:= NoMultiplos(PilaRandom,StrToInt(Edit1.Text));
 memo1.Lines.Add(MuestraPila(nmPila));
 end;
 
@@ -42,7 +42,7 @@ procedure TForm1.bPilaRandomClick(Sender: TObject);
 begin
 memo1.Lines.Clear;
 memo1.Lines.Add('Pila Random' + sLineBreak);
-PilaRandom.LlenarClavesRandom(8,1,10);
+PilaRandom.LlenarClavesRandom(8,1,20);
 memo1.Lines.Add(MuestraPila(PilaRandom));
 
 
